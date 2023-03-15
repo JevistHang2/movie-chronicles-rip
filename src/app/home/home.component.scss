@@ -1,0 +1,11 @@
+$container-gap: 3rem;
+
+.container {
+    margin-left: $container-gap;
+    margin-right: $container-gap;
+}
+
+mat-toolbar {
+    padding-left: $container-gap;
+    padding-right: $container-gap;
+}
