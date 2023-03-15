@@ -1,9 +1,19 @@
-// .main-content {
-//     background-color: white;
-//     height: 75vh;
-//     border-radius: 1rem;
-//     padding-top: 2rem;
-//     padding-left: $container-gap;
-//     padding-right: $container-gap;
-//     overflow: auto;
-// }
+.main-content {
+    background-image: var(--imageUrl);
+    margin-top: 5.3rem;
+    background-color: white;
+    height: 65vh;
+    border-radius: 1rem;
+    padding: 2rem;
+    overflow: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-content {
+    background-color: rgba(255, 255, 255, 0.811);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    height: 60vh;
+    overflow: auto;
+}

@@ -1,6 +1,6 @@
 <mat-toolbar>
-    <img src="./assets/logo.png" width="70px" alt="Logo Movie">
-    <span>Movie RIP</span>
+    <img src="./assets/logo.png" width="70px" alt="Logo Movie" (click)="goToMovieList()" style="cursor: pointer;">
+    <span (click)="goToMovieList()" style="cursor: pointer;">Movie RIP</span>
 </mat-toolbar>
 <div class="container">
     <router-outlet></router-outlet>

@@ -5,21 +5,15 @@ import { APP_CONFIG, IAppConfig } from 'src/app/app.config';
 @Injectable({
   providedIn: 'root'
 })
-export class MovieListService {
+export class MovieDetailService {
 
   constructor(private http: HttpClient,
     @Inject(APP_CONFIG) private config: IAppConfig) { }
 
-  getListMovie(paramsValue: HttpParams) {
+  getDetail(paramsValue: HttpParams, id: number) {
     let params = paramsValue;
     params = params.append('api_key', String(this.config.apiKey))
-    return this.http.get(this.config.apiUrl + '/discover/movie/', { params })
-  }
-
-  getListGenre(paramsValue: HttpParams) {
-    let params = paramsValue;
-    params = params.append('api_key', String(this.config.apiKey))
-    return this.http.get(this.config.apiUrl + '/genre/movie/list', { params })
+    return this.http.get(this.config.apiUrl + '/movie/' + id, { params })
   }
 
 }

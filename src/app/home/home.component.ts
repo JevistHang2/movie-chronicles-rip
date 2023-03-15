@@ -14,4 +14,7 @@ export class HomeComponent implements OnInit {
 
   }
 
+  goToMovieList() {
+    this.router.navigate(['home/movie'])
+  }
 }

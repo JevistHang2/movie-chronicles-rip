@@ -2,8 +2,10 @@ import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Genre } from './model/genre';
+import { Movie } from './model/movie';
 import { ResponseMovie } from './model/response-movie';
 import { SortOptions } from './model/sort-options';
 import { MovieListService } from './movie-list.service';
@@ -16,7 +18,7 @@ import { MovieListService } from './movie-list.service';
 export class MovieListComponent implements OnInit {
   detail!: ResponseMovie;
   genres!: Genre[];
-  imageBaseUrl: string = environment.imageBaseUrl
+  imageBaseUrl: string = environment.imageBaseUrl;
 
   sortOptions: SortOptions[] = [
     { sortBy: 'popularity.asc', label: 'Popularity (Asc)' },
@@ -32,7 +34,7 @@ export class MovieListComponent implements OnInit {
     end: new FormControl<Date | null>(null),
   });
 
-  constructor(private movieListServices: MovieListService, private datePipe: DatePipe) { }
+  constructor(private movieListServices: MovieListService, private datePipe: DatePipe, private router: Router) { }
 
   ngOnInit() {
     let params = new HttpParams()
@@ -64,6 +66,17 @@ export class MovieListComponent implements OnInit {
     let params = new HttpParams()
     params = params.append('sort_by', String(event.value))
     this.movieListServices.getListMovie(params).subscribe((data: any) => this.listDataResult(data))
+  }
+
+  onDetail(data: Movie) {
+    this.router.navigate(['home/movie/detail'], {
+      replaceUrl: true, // replaces the current URL in the browser history
+      state: {
+        // persist the state data using the HTML5 history API
+        data: data,
+        title: 'Detail Data'
+      }
+    })
   }
 
 }

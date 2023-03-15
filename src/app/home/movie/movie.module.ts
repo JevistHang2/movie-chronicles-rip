@@ -16,6 +16,7 @@ import { MovieListService } from './movie-list/movie-list.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { DatePipe } from '@angular/common'
+import { MovieDetailService } from './movie-detail/movie-detail.service';
 
 @NgModule({
   declarations: [MovieListComponent, MovieDetailComponent],
@@ -26,6 +27,6 @@ import { DatePipe } from '@angular/common'
     MatCardModule
   ],
   exports: [MovieListComponent, MovieDetailComponent],
-  providers: [HttpClientModule, MovieListService, DatePipe]
+  providers: [HttpClientModule, MovieListService, MovieDetailService, DatePipe]
 })
 export class MovieModule { }
