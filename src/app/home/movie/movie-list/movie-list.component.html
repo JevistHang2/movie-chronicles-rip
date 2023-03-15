@@ -2,7 +2,7 @@
   <div>
     <mat-form-field appearance="fill">
       <mat-label>Sort By</mat-label>
-      <mat-select>
+      <mat-select (selectionChange)="handleSortBy($event)">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let option of sortOptions" [value]="option.sortBy">{{option.label}}</mat-option>
       </mat-select>
@@ -23,27 +23,41 @@
         <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
     </div>
-    <button class="button-filter-style" mat-raised-button>Filter Date</button>
+    <button class="button-filter-style" mat-raised-button (click)="handleFilterDate()">Filter Date</button>
   </div>
 </div>
 
 <div class="main-content">
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
-  <p> List works!</p>
+  <div *ngIf="detail" style="display: flex; justify-content: center; align-items: center; flex-wrap:wrap">
+    <ng-container *ngFor="let data of detail.results">
+      <mat-card class="card-size">
+        <mat-card-header>
+          <div style="height: 2.5rem;">
+            <mat-card-title
+              style="font-size: small; font-weight: bold; padding: 0px; margin: 0px; line-height: 1.2rem;">{{data.title}}</mat-card-title>
+          </div>
+        </mat-card-header>
+        <img style="padding: 0.5rem; height: 16rem;" mat-card-image src="{{imageBaseUrl}}/w185{{data.poster_path}}"
+          alt="poster_img">
+        <mat-card-content>
+          <p style="overflow: auto; height: 4rem; font-size: smaller;">
+            {{data.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="color:brown; font-weight: bold;">Popularity </span>
+          <span style="color:brown; font-weight: bold;">{{data.popularity}}</span>
+        </mat-card-actions>
+        <mat-card-footer style="display: flex; flex-wrap: wrap;">
+          <div *ngFor="let id of data.genre_ids">
+            <ng-container *ngFor="let item of genres">
+              <ng-container *ngIf="item.id === id">
+                <div class="genre-style">{{item.name}}</div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>

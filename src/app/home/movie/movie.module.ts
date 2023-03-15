@@ -12,14 +12,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MovieListService } from './movie-list/movie-list.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [MovieListComponent, MovieDetailComponent],
   imports: [
-    CommonModule, MovieRoutingModule,
+    CommonModule, MovieRoutingModule, HttpClientModule,
     MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule,
-    FormsModule, ReactiveFormsModule, MatNativeDateModule, MatIconModule, MatSelectModule
+    FormsModule, ReactiveFormsModule, MatNativeDateModule, MatIconModule, MatSelectModule,
+    MatCardModule
   ],
-  exports: [MovieListComponent, MovieDetailComponent]
+  exports: [MovieListComponent, MovieDetailComponent],
+  providers: [HttpClientModule, MovieListService, DatePipe]
 })
 export class MovieModule { }

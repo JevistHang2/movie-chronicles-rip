@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './home/home.module';
+import { AppConfig, APP_CONFIG } from './app.config';
 
 @NgModule({
   declarations: [
@@ -15,10 +16,12 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule
+    HomeModule,
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [{
+    provide: APP_CONFIG, useValue: AppConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

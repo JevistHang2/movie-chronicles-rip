@@ -10,15 +10,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 
-
 @NgModule({
   declarations: [HomeComponent],
   imports: [
-    CommonModule,
+    CommonModule, 
     HomeRoutingModule,
     MatToolbarModule,
     MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule
-  ]
+  ],
+  providers: []
 })
 export class HomeModule { }

@@ -3,6 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0rem 0rem 0rem;
+    flex-wrap: wrap;
 }
 
 .main-content {
@@ -23,6 +24,32 @@
     margin-top: -1.5rem;
 }
 
+.card-size {
+    max-width: 15rem;
+    height: 29rem;
+    margin: 1rem;
+}
+
 ::ng-deep.mdc-text-field {
     border-radius: 20px !important;
+}
+
+mat-card {
+    background: rgb(185, 175, 175);
+    border-radius: 0.5rem;
+}
+
+mat-card-actions {
+    min-height: 1rem !important;
+}
+
+.genre-style {
+    display: inline-block;
+    text-align: center;
+    background-color: #434343;
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    color: pink;
 }
