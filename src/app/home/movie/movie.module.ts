@@ -19,14 +19,16 @@ import { DatePipe } from '@angular/common'
 import { MovieDetailService } from './movie-detail/movie-detail.service';
 import { GetGenreNamePipe } from 'src/app/pipe/get-genre-name.pipe';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ConvertHourMinutePipe } from 'src/app/pipe/convert-hour-minute.pipe';
 
 @NgModule({
-  declarations: [MovieListComponent, MovieDetailComponent, GetGenreNamePipe],
+  declarations: [MovieListComponent, MovieDetailComponent, GetGenreNamePipe, ConvertHourMinutePipe],
   imports: [
     CommonModule, MovieRoutingModule, HttpClientModule,
     MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, MatIconModule, MatSelectModule,
-    MatCardModule, MatPaginatorModule
+    MatCardModule, MatPaginatorModule, MatGridListModule
   ],
   exports: [MovieListComponent, MovieDetailComponent],
   providers: [HttpClientModule, MovieListService, MovieDetailService, DatePipe]

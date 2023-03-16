@@ -16,12 +16,16 @@ export class MovieDetailComponent implements OnInit {
   imageBaseUrl: string = environment.imageBaseUrl;
 
   constructor(private movieDetailServices: MovieDetailService, private datePipe: DatePipe, private router: Router) {
-    this.stateData = window.history.state.data
+    this.stateData = window.history.state.data;
   }
 
   ngOnInit() {
     let params = new HttpParams();
     this.movieDetailServices.getDetail(params, this.stateData.id).subscribe(((data: any) => this.detail = data));
+  }
+
+  backToHome() {
+    this.router.navigate(['home/movie']);
   }
 
 }

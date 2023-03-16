@@ -1,6 +1,5 @@
 .main-content {
     background-image: var(--imageUrl);
-    margin-top: 5.3rem;
     background-color: white;
     height: 65vh;
     border-radius: 1rem;
@@ -16,4 +15,20 @@
     padding: 1rem;
     height: 60vh;
     overflow: auto;
+}
+
+::ng-deep.mat-grid-tile-content {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+.genre-style {
+    display: inline-block;
+    text-align: center;
+    background-color: #434343;
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    color: pink;
 }

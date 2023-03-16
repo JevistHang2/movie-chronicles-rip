@@ -1,5 +1,99 @@
-<div class="main-content" style="--imageUrl:url({{imageBaseUrl}}/original/{{detail.backdrop_path}})">
+<div style="margin: 1rem 0px; display: flex; justify-content: flex-end;">
+  <button mat-fab color="accent" aria-label="Back Home" (click)="backToHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+</div>
+
+
+<div *ngIf="detail" class="main-content" style="--imageUrl:url({{imageBaseUrl}}/original/{{detail?.backdrop_path}})">
   <div class="card-content">
-    {{detail | json}}
+    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem; width: 100%;">
+      <span style="font-size: x-large; font-weight: bolder;">{{detail.title}}</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+      <div style="height: 23vw; padding: 1rem; display: flex; justify-content: center; align-items: center;">
+        <img style="height: 23rem; border-radius: 1rem;" src="{{imageBaseUrl}}/w342{{detail.poster_path}}"
+          alt="poster_img">
+      </div>
+      <div style="height: 23vw; width: 65vw; padding: 1rem;">
+        <mat-grid-list cols="7" rowHeight="40px">
+          <mat-grid-tile [colspan]="1" [rowspan]="2">
+            Description
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="2">
+            {{detail.overview}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Popularity
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.popularity}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Release date
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.release_date}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Genre
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            <ng-container *ngFor="let data of detail.genres">
+              <div class="genre-style">{{data.name}}</div>
+            </ng-container>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Production Company
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            <ng-container *ngFor="let data of detail.production_companies">
+              <div class="genre-style">{{data.name}}</div>
+            </ng-container>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Run Time
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.runtime | convertHourMinute}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Revenue
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.revenue | currency:'USD':'symbol':'1.0-0'}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Vote Average
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.vote_average}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Vote Count
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            {{detail.vote_count}}
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            Spoken Language
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="6" [rowspan]="1">
+            <ng-container *ngFor="let data of detail.spoken_languages">
+              <div class="genre-style">{{data.english_name}}</div>
+            </ng-container>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
     <div style="margin-right: 1rem;">
       <mat-form-field appearance="fill">
         <mat-label>Sort By</mat-label>
-        <mat-select (selectionChange)="handleSortBy($event)">
+        <mat-select (selectionChange)="handleSortBy($event); maincontainer.scrollTop = 0">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let option of sortOptions" [value]="option.sortBy">{{option.label}}</mat-option>
         </mat-select>
@@ -24,18 +24,19 @@
           <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
         </mat-form-field>
       </div>
-      <button class="button-filter-style" mat-raised-button (click)="handleFilterDate()">Filter Date</button>
+      <button class="button-filter-style" mat-raised-button
+        (click)="handleFilterDate(); maincontainer.scrollTop = 0">Filter Date</button>
     </div>
   </div>
   <div style="margin-bottom: 0.2rem;">
-    <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
-      [pageSize]="pageSize" [pageIndex]="pageIndex" [showFirstLastButtons]="showFirstLastButtons"
+    <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event); maincontainer.scrollTop = 0"
+      [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex" [showFirstLastButtons]="showFirstLastButtons"
       [hidePageSize]="hidePageSize" aria-label="Select page">
     </mat-paginator>
   </div>
 </div>
 
-<div class="main-content">
+<div class="main-content" #maincontainer>
   <div *ngIf="detail" style="display: flex; justify-content: center; align-items: center; flex-wrap:wrap">
     <ng-container *ngFor="let data of detail.results">
       <mat-card class="card-size" style="cursor: pointer" (click)="onDetail(data)">
