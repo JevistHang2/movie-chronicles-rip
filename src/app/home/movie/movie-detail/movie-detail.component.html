@@ -7,92 +7,101 @@
 
 <div *ngIf="detail" class="main-content" style="--imageUrl:url({{imageBaseUrl}}/original/{{detail?.backdrop_path}})">
   <div class="card-content">
-    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem; width: 100%;">
+    <div style="display: flex; justify-content: center; margin-bottom: 0.5rem; width: 100%; text-align: center;">
       <span style="font-size: x-large; font-weight: bolder;">{{detail.title}}</span>
     </div>
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 100%;">
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
       <div style="height: 23vw; padding: 1rem; display: flex; justify-content: center; align-items: center;">
-        <img style="height: 23rem; border-radius: 1rem;" src="{{imageBaseUrl}}/w342{{detail.poster_path}}"
+        <img style="height: 100%; border-radius: 1rem;" src="{{imageBaseUrl}}/w342{{detail.poster_path}}"
           alt="poster_img">
       </div>
-      <div style="height: 23vw; width: 65vw; padding: 1rem;">
-        <mat-grid-list cols="7" rowHeight="40px">
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div style="height: 23vw; width: 63vw; padding: 1rem;">
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Description
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="2">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.overview}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Popularity
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.popularity}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Release date
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.release_date}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Genre
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             <ng-container *ngFor="let data of detail.genres">
               <div class="genre-style">{{data.name}}</div>
             </ng-container>
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Production Company
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             <ng-container *ngFor="let data of detail.production_companies">
               <div class="genre-style">{{data.name}}</div>
             </ng-container>
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Run Time
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.runtime | convertHourMinute}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Revenue
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.revenue | currency:'USD':'symbol':'1.0-0'}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Vote Average
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.vote_average}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Vote Count
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             {{detail.vote_count}}
-          </mat-grid-tile>
-
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; padding: 0.5rem 0rem">
+          <div style="width: 9rem;">
             Spoken Language
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="6" [rowspan]="1">
+          </div>
+          <div style=" width: 51rem;">
             <ng-container *ngFor="let data of detail.spoken_languages">
               <div class="genre-style">{{data.english_name}}</div>
             </ng-container>
-          </mat-grid-tile>
-        </mat-grid-list>
+          </div>
+        </div>
       </div>
     </div>
   </div>
