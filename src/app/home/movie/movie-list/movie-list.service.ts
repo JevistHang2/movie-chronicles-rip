@@ -12,13 +12,13 @@ export class MovieListService {
 
   getListMovie(paramsValue: HttpParams) {
     let params = paramsValue;
-    params = params.append('api_key', String(this.config.apiKey))
+    params = params.append('api_key', String(this.config.apiKey));
     return this.http.get(this.config.apiUrl + '/discover/movie/', { params })
   }
 
   getListGenre(paramsValue: HttpParams) {
     let params = paramsValue;
-    params = params.append('api_key', String(this.config.apiKey))
+    params = params.append('api_key', String(this.config.apiKey));
     return this.http.get(this.config.apiUrl + '/genre/movie/list', { params })
   }
 

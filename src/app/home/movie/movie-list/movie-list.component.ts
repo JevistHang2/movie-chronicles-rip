@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Genre } from './model/genre';
@@ -19,6 +20,15 @@ export class MovieListComponent implements OnInit {
   detail!: ResponseMovie;
   genres!: Genre[];
   imageBaseUrl: string = environment.imageBaseUrl;
+
+  length: number = 0;
+  pageSize: number = 20;
+  pageIndex: number = 0;
+  hidePageSize = true;
+  showFirstLastButtons = true;
+
+  sort!: string;
+  pageEvent!: PageEvent;
 
   sortOptions: SortOptions[] = [
     { sortBy: 'popularity.asc', label: 'Popularity (Asc)' },
@@ -44,11 +54,29 @@ export class MovieListComponent implements OnInit {
   }
 
   listDataResult(response: ResponseMovie) {
-    this.detail = response
+    this.detail = response;
+    this.pageIndex = response.page - 1;
+    this.length = response.total_results;
   }
 
   listDataGenre(response: any) {
-    this.genres = response.genres
+    this.genres = response.genres;
+  }
+
+  handlePageEvent(e: PageEvent) {
+    let params = new HttpParams()
+    if (this.range.value.start) {
+      params = params.append('primary_release_date.gte', String(this.datePipe.transform(this.range.value.start, 'yyyy-MM-dd')))
+    }
+    if (this.range.value.end) {
+      params = params.append('primary_release_date.lte', String(this.datePipe.transform(this.range.value.end, 'yyyy-MM-dd')))
+    }
+    if (this.sort) {
+      params = params.append('sort_by', String(this.sort))
+    }
+    params = params.append('page', String(e.pageIndex + 1))
+    this.movieListServices.getListMovie(params)
+      .subscribe((data: any) => this.listDataResult(data))
   }
 
   handleFilterDate() {
@@ -59,12 +87,26 @@ export class MovieListComponent implements OnInit {
     if (this.range.value.end) {
       params = params.append('primary_release_date.lte', String(this.datePipe.transform(this.range.value.end, 'yyyy-MM-dd')))
     }
+    if (this.sort) {
+      params = params.append('sort_by', String(this.sort))
+    }
     this.movieListServices.getListMovie(params).subscribe((data: any) => this.listDataResult(data))
   }
 
   handleSortBy(event: any) {
+    let tempSort = 'popularity.desc'
+    if (event.value) {
+      tempSort = String(event.value);
+    }
+    this.sort = tempSort;
     let params = new HttpParams()
-    params = params.append('sort_by', String(event.value))
+    if (this.range.value.start) {
+      params = params.append('primary_release_date.gte', String(this.datePipe.transform(this.range.value.start, 'yyyy-MM-dd')))
+    }
+    if (this.range.value.end) {
+      params = params.append('primary_release_date.lte', String(this.datePipe.transform(this.range.value.end, 'yyyy-MM-dd')))
+    }
+    params = params.append('sort_by', tempSort)
     this.movieListServices.getListMovie(params).subscribe((data: any) => this.listDataResult(data))
   }
 

@@ -1,29 +1,37 @@
 <div class="filter-container">
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Sort By</mat-label>
-      <mat-select (selectionChange)="handleSortBy($event)">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let option of sortOptions" [value]="option.sortBy">{{option.label}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="date-filter-container">
-    <div>
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+    <div style="margin-right: 1rem;">
       <mat-form-field appearance="fill">
-        <mat-label>Filter by date</mat-label>
-        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Start date">
-          <input matEndDate formControlName="end" placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-
-        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        <mat-label>Sort By</mat-label>
+        <mat-select (selectionChange)="handleSortBy($event)">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let option of sortOptions" [value]="option.sortBy">{{option.label}}</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
-    <button class="button-filter-style" mat-raised-button (click)="handleFilterDate()">Filter Date</button>
+    <div class="date-filter-container">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Filter by date</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+      </div>
+      <button class="button-filter-style" mat-raised-button (click)="handleFilterDate()">Filter Date</button>
+    </div>
+  </div>
+  <div style="margin-bottom: 0.2rem;">
+    <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+      [pageSize]="pageSize" [pageIndex]="pageIndex" [showFirstLastButtons]="showFirstLastButtons"
+      [hidePageSize]="hidePageSize" aria-label="Select page">
+    </mat-paginator>
   </div>
 </div>
 
@@ -49,13 +57,9 @@
           <span style="color:brown; font-weight: bold;">{{data.popularity}}</span>
         </mat-card-actions>
         <mat-card-footer style="display: flex; flex-wrap: wrap;">
-          <div *ngFor="let id of data.genre_ids">
-            <ng-container *ngFor="let item of genres">
-              <ng-container *ngIf="item.id === id">
-                <div class="genre-style">{{item.name}}</div>
-              </ng-container>
-            </ng-container>
-          </div>
+          <ng-container *ngFor="let id of data.genre_ids">
+            <div class="genre-style">{{id | getGenreName: genres }}</div>
+          </ng-container>
         </mat-card-footer>
       </mat-card>
     </ng-container>

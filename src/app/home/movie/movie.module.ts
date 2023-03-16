@@ -17,14 +17,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { DatePipe } from '@angular/common'
 import { MovieDetailService } from './movie-detail/movie-detail.service';
+import { GetGenreNamePipe } from 'src/app/pipe/get-genre-name.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [MovieListComponent, MovieDetailComponent],
+  declarations: [MovieListComponent, MovieDetailComponent, GetGenreNamePipe],
   imports: [
     CommonModule, MovieRoutingModule, HttpClientModule,
     MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule,
     FormsModule, ReactiveFormsModule, MatNativeDateModule, MatIconModule, MatSelectModule,
-    MatCardModule
+    MatCardModule, MatPaginatorModule
   ],
   exports: [MovieListComponent, MovieDetailComponent],
   providers: [HttpClientModule, MovieListService, MovieDetailService, DatePipe]
